@@ -1,49 +1,49 @@
-import { ActionSheet, Discord } from "@metro/common/components";
+import { Discord, TableRowIcon } from "@metro/common/components";
 import { React } from "@metro/common";
-import { logger } from "@lib/utils/logger";
+import { findAssetId } from "@/lib/api/assets";
+import SelectedFilterIcon from "@assets/icons/SelectedFilterIcon.png";
 
-export default function AssetFiltersSheet({
-    value,
+enum Filters {
+    All = "All",
+    Displayable = "Displayable",
+}
+
+export function AssetFiltersMenu({
+    filter,
     onChange,
 }: {
-    value: string;
+    filter: string;
     onChange: (type: string) => void;
 }) {
-    const [current, setCurrent] = React.useState(value);
+    const [current, setCurrent] = React.useState(filter);
 
     React.useEffect(() => {
-        setCurrent(value);
-    }, [value]);
-
-    logger.log(value);
+        setCurrent(filter);
+    }, [filter]);
 
     return (
-        <ActionSheet>
-            <Discord.Text variant={"heading-lg/extrabold"}>
-                Asset Filters
-            </Discord.Text>
-            <Discord.TableRowGroup title={"Filters"}>
-                <Discord.TableSwitchRow
-                    label={"All"}
-                    value={current == "all"}
-                    onValueChange={(v: boolean) => {
-                        if (v) {
-                            onChange("all");
-                            setCurrent("all");
-                        }
-                    }}
+        <Discord.ContextMenu
+            title={"Asset Filters"}
+            items={Object.values(Filters).map((value) => ({
+                label: value,
+                variant: "default",
+                action: () => {
+                    setCurrent(value.toLowerCase());
+                    onChange(value.toLowerCase());
+                },
+                iconSource: value.toLowerCase() === current && {
+                    uri: SelectedFilterIcon,
+                },
+            }))}
+        >
+            {(props: any) => (
+                <Discord.IconButton
+                    icon={findAssetId("FiltersHorizontalIcon")}
+                    variant={"tertiary"}
+                    size={"md"}
+                    {...props}
                 />
-                <Discord.TableSwitchRow
-                    label={"Displayable"}
-                    value={current == "displayable"}
-                    onValueChange={(v: boolean) => {
-                        if (v) {
-                            onChange("displayable");
-                            setCurrent("displayable");
-                        }
-                    }}
-                />
-            </Discord.TableRowGroup>
-        </ActionSheet>
+            )}
+        </Discord.ContextMenu>
     );
 }

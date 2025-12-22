@@ -29,16 +29,16 @@ export default function initSettings() {
                 render: () => <ReCordSettings />,
             },
             {
-                key: "DEVTOOLS",
-                title: () => "Developer",
-                icon: findAssetId("WrenchIcon"),
-                render: () => <ReCordDevtools />,
-            },
-            {
                 key: "PLUGINS",
                 title: () => "Plugins",
                 icon: findAssetId("PuzzlePieceIcon"),
                 render: () => <PluginsPage />,
+            },
+            {
+                key: "DEVTOOLS",
+                title: () => "Developer",
+                icon: findAssetId("WrenchIcon"),
+                render: () => <ReCordDevtools />,
             },
         ],
     });

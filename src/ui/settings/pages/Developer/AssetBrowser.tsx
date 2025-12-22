@@ -1,4 +1,4 @@
-import { findAssetId, iterateAssets } from "@lib/api/assets";
+import { iterateAssets } from "@lib/api/assets";
 import Search from "@lib/ui/components/Search";
 import ErrorBoundary from "@lib/ui/reporter/components/ErrorBoundary";
 import { React } from "@metro/common";
@@ -6,8 +6,7 @@ import { Discord } from "@metro/common/components";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";
 import AssetItem from "./AssetItem";
-import { showSheet } from "@lib/ui/sheets";
-import AssetFiltersSheet from "./AssetFilters";
+import { AssetFiltersMenu } from "./AssetFilters";
 
 const displayable = new Set(["png", "jpg", "svg"]);
 
@@ -35,22 +34,7 @@ export default function AssetBrowser() {
                         onChangeText={(s) => setSearch(s.toLowerCase())}
                         placeholder="Search for assets.."
                     />
-
-                    <Discord.IconButton
-                        icon={findAssetId("FiltersHorizontalIcon")}
-                        variant={"secondary"}
-                        size={"sm"}
-                        onPress={() => {
-                            showSheet(
-                                "AssetBrowserFilters",
-                                AssetFiltersSheet,
-                                {
-                                    value: filter,
-                                    onChange: setFilter,
-                                }
-                            );
-                        }}
-                    />
+                    <AssetFiltersMenu filter={filter} onChange={setFilter} />
                 </View>
 
                 <View
