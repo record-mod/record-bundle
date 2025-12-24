@@ -32,6 +32,7 @@ export default function AssetBrowser() {
                             marginRight: 8,
                         }}
                         onChangeText={(s) => setSearch(s.toLowerCase())}
+                        isRound={true}
                         placeholder="Search for assets.."
                     />
                     <AssetFiltersMenu filter={filter} onChange={setFilter} />
