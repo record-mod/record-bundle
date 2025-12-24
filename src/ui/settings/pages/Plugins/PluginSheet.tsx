@@ -25,11 +25,7 @@ export default function PluginSheet({
                         {instance.errors.map((e) => (
                             <Discord.TableRow
                                 label={e.message}
-                                trailing={
-                                    <Discord.TableRow.TrailingText
-                                        text={e.time}
-                                    />
-                                }
+                                subLabel={e.time}
                                 variant="danger"
                             />
                         ))}
