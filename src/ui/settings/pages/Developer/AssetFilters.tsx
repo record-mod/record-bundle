@@ -1,4 +1,4 @@
-import { Discord, TableRowIcon } from "@metro/common/components";
+import { Discord } from "@metro/common/components";
 import { React } from "@metro/common";
 import { findAssetId } from "@/lib/api/assets";
 import SelectedFilterIcon from "@assets/icons/SelectedFilterIcon.png";
