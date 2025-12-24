@@ -39,7 +39,7 @@ export function withNamespace(namespace: string) {
     return {
         setValue: <T = unknown>(key: string, value: T) =>
             setValue<T>(namespace, key, value),
-        rmeoveKey: (key: string) => removeKey(namespace, key),
+        removeKey: (key: string) => removeKey(namespace, key),
         getValue: <T = unknown>(key: string, def: T) =>
             setValue<T>(namespace, key, def),
     };
