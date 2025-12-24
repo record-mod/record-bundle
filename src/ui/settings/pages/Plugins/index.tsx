@@ -1,17 +1,40 @@
-import { ReactNative } from "@metro/common";
+import { React, ReactNative } from "@metro/common";
 import { instances } from "@plugins";
 import { View } from "react-native";
 import PluginCard from "./PluginCard";
+import Search from "@/lib/ui/components/Search";
+import { Discord } from "@/metro/common/components";
 
 export default function PluginsPage() {
-    const plugins = Array.from(instances);
+    const allPlugins = Array.from(instances);
+    const [query, setQuery] = React.useState("");
+
+    const plugins = React.useMemo(() => {
+        const filtered = query
+            ? allPlugins.filter(
+                  ([id, instance]) =>
+                      // Check plugin ID for full match and name for partial match.
+                      id.toLowerCase() == query ||
+                      instance.manifest.name.toLowerCase().includes(query)
+              )
+            : allPlugins;
+
+        return filtered;
+    }, [query]);
 
     return (
-        <View>
-            <ReactNative.FlatList
-                data={plugins}
-                renderItem={({ item: [id, _] }) => <PluginCard id={id} />}
-            />
+        <View style={{ padding: 10 }}>
+            <Discord.Stack spacing={16}>
+                <Search
+                    onChangeText={setQuery}
+                    placeholder={"Search plugins"}
+                    isRound={true}
+                />
+                <ReactNative.FlatList
+                    data={plugins}
+                    renderItem={({ item: [id, _] }) => <PluginCard id={id} />}
+                />
+            </Discord.Stack>
         </View>
     );
 }

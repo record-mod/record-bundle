@@ -7,13 +7,11 @@ import { showSheet } from "@lib/ui/sheets";
 import PluginSheet from "./PluginSheet";
 
 export default function PluginCard({ id }: { id: string }) {
-    const [isEnabled, setIsEnabled] = React.useState(false);
-    const [, forceUpdate] = React.useReducer(() => ({}), 0);
     const pluginInstance = instances.get(id);
-
-    React.useEffect(() => {
-        setIsEnabled(Boolean(pluginInstance?.flags! & PluginFlags.Enabled));
-    }, []);
+    const [isEnabled, setIsEnabled] = React.useState(
+        Boolean(pluginInstance?.flags! & PluginFlags.Enabled)
+    );
+    const [, forceUpdate] = React.useReducer(() => ({}), 0);
 
     React.useEffect(() => {
         if (isEnabled) {
@@ -56,7 +54,14 @@ export default function PluginCard({ id }: { id: string }) {
                     </Discord.Stack>
                 </RN.View>
                 <RN.View style={{ justifyContent: "space-between" }}>
-                    <RN.View style={{ flexDirection: "row", gap: 8 }}>
+                    <RN.View
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "row",
+                            gap: 8,
+                        }}
+                    >
                         <Discord.IconButton
                             icon={findAssetId("CircleInformationIcon")}
                             variant={"secondary"}
@@ -76,7 +81,6 @@ export default function PluginCard({ id }: { id: string }) {
                         }}
                     >
                         <TableSwitch
-                            label={"Enabled"}
                             value={isEnabled}
                             onValueChange={(v: boolean) => {
                                 setIsEnabled(v);
