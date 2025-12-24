@@ -28,8 +28,8 @@ export default function ErrorBoundaryScreen(props: {
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ gap: 4 }}>
-                <Discord.Text variant="display-lg">Uh oh.</Discord.Text>
-                <Discord.Text variant="text-md/normal">
+                <Discord.Text variant={"display-lg"}>Uh oh.</Discord.Text>
+                <Discord.Text variant={"text-md/normal"}>
                     A crash occurred while rendering a component. This could be
                     caused by ReCord, or Discord itself.
                 </Discord.Text>
@@ -47,12 +47,12 @@ export default function ErrorBoundaryScreen(props: {
             </ScrollView>
             <Discord.Card style={{ gap: 6 }}>
                 <Discord.Button
-                    text="Reload Discord"
+                    text={"Reload Discord"}
                     onPress={() => BundleUpdaterManager.reload()}
                 />
                 <Discord.Button
-                    variant="destructive"
-                    text="Retry Render"
+                    variant={"destructive"}
+                    text={"Retry Render"}
                     onPress={() => props.rerender()}
                 />
             </Discord.Card>

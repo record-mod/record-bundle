@@ -33,20 +33,20 @@ export default function PluginCard({ id }: { id: string }) {
             >
                 <RN.View>
                     <Discord.Stack spacing={8}>
-                        <Discord.Text variant="heading-lg/semibold">
+                        <Discord.Text variant={"heading-lg/semibold"}>
                             {pluginInstance?.manifest.name}
                         </Discord.Text>
-                        <Discord.Text variant="heading-sm/semibold">
+                        <Discord.Text variant={"heading-sm/semibold"}>
                             {pluginInstance?.manifest.id} -{" "}
                             {pluginInstance?.manifest.version}
                         </Discord.Text>
-                        <Discord.Text variant="heading-md/semibold">
+                        <Discord.Text variant={"heading-md/semibold"}>
                             Enabled
                         </Discord.Text>
                         {pluginInstance?.flags! & PluginFlags.Errored && (
                             <Discord.Text
-                                variant="heading-md/semibold"
-                                color="text-feedback-critical"
+                                variant={"heading-md/semibold"}
+                                color={"text-feedback-critical"}
                             >
                                 This plugin has error(s)!
                             </Discord.Text>

@@ -23,7 +23,7 @@ export default function ErrorCard(props: ErrorCardProps) {
                 {props.header && typeof props.header !== "string" ? (
                     props.header
                 ) : (
-                    <Text variant="heading-lg/bold">
+                    <Text variant={"heading-lg/bold"}>
                         {props.header ?? "Uh Oh"}
                     </Text>
                 )}
@@ -31,7 +31,7 @@ export default function ErrorCard(props: ErrorCardProps) {
                 <TwinButtons style={{ gap: 6 }}>
                     {props.onRetryRender && (
                         <Button
-                            variant="destructive"
+                            variant={"destructive"}
                             text={"Retry Render"}
                             onPress={props.onRetryRender}
                         />

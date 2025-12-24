@@ -12,7 +12,7 @@ export default function ErrorDetailsActionSheet(props: { error: Error }) {
     return (
         <ActionSheet>
             <View style={{ gap: 12, paddingVertical: 12 }}>
-                <Text variant="heading-lg/extrabold">Error</Text>
+                <Text variant={"heading-lg/extrabold"}>Error</Text>
                 <Codeblock selectable={true}>{props.error.message}</Codeblock>
                 {hasStack(props.error) && (
                     <ErrorStackCard error={props.error} />

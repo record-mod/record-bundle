@@ -42,7 +42,7 @@ export default function AssetItem({ asset }: { asset: Asset }) {
                             <>
                                 {displayable.has(asset.type) ? (
                                     <Image
-                                        resizeMode="contain"
+                                        resizeMode={"contain"}
                                         source={asset.id}
                                         style={{
                                             flex: 1,
@@ -53,8 +53,8 @@ export default function AssetItem({ asset }: { asset: Asset }) {
                                     />
                                 ) : (
                                     <Discord.Text
-                                        variant="text-sm/medium"
-                                        color="text-feedback-critical"
+                                        variant={"text-sm/medium"}
+                                        color={"text-feedback-critical"}
                                         style={{
                                             width: "100%",
                                             textAlign: "center",
@@ -91,7 +91,7 @@ export default function AssetItem({ asset }: { asset: Asset }) {
                                     />
                                 </Discord.TableRowGroup>
                                 <Discord.Text
-                                    variant="text-sm/medium"
+                                    variant={"text-sm/medium"}
                                     style={{
                                         width: "100%",
                                         textAlign: "center",

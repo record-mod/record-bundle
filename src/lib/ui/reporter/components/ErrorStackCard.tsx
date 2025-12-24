@@ -28,7 +28,7 @@ export default function ErrorStackCard(props: {
     return (
         <Card>
             <View style={{ gap: 12 }}>
-                <Text variant="heading-lg/bold">Call Stack</Text>
+                <Text variant={"heading-lg/bold"}>Call Stack</Text>
                 <View style={{ gap: 4 }}>
                     {stack.map((f, id) => (
                         <Line id={id} frame={f} />
@@ -44,7 +44,7 @@ export default function ErrorStackCard(props: {
                     }}
                 >
                     <Button
-                        variant="secondary"
+                        variant={"secondary"}
                         text={`Show ${collapsed ? "more" : "less"}`}
                         icon={findAssetId(
                             collapsed
@@ -54,8 +54,8 @@ export default function ErrorStackCard(props: {
                         onPress={() => setCollapsed((v) => !v)}
                     />
                     <Button
-                        variant="secondary"
-                        text="Copy"
+                        variant={"secondary"}
+                        text={"Copy"}
                         icon={findAssetId("CopyIcon")}
                         onPress={() => clipboard.setString(props.error.stack)}
                     />
@@ -74,10 +74,10 @@ function Line(props: { id: number; frame: StackFrame }) {
             </Text>
             <Text
                 style={{ fontFamily: constants.Fonts.CODE_NORMAL }}
-                ellipsizeMode="middle"
+                ellipsizeMode={"middle"}
                 numberOfLines={collapsed ? 1 : undefined}
             >
-                <Text color="text-default">
+                <Text color={"text-default"}>
                     {props.frame.file === INDEX_BUNDLE_FILE
                         ? "jsbundle"
                         : props.frame.file}

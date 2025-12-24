@@ -10,14 +10,14 @@ export default function PluginSheet({
     return (
         <ActionSheet>
             <RN.View style={{ alignItems: "center" }}>
-                <Discord.Text variant="heading-xl/bold">
+                <Discord.Text variant={"heading-xl/bold"}>
                     {instance.manifest.name}
                 </Discord.Text>
             </RN.View>
             {instance.flags & PluginFlags.Errored ? (
                 <>
                     <RN.View style={{ alignItems: "center", marginBottom: 8 }}>
-                        <Discord.Text variant="heading-lg/bold">
+                        <Discord.Text variant={"heading-lg/bold"}>
                             This plugin had error(s):
                         </Discord.Text>
                     </RN.View>
@@ -26,7 +26,7 @@ export default function PluginSheet({
                             <Discord.TableRow
                                 label={e.message}
                                 subLabel={e.time}
-                                variant="danger"
+                                variant={"danger"}
                             />
                         ))}
                     </Discord.TableRowGroup>
@@ -34,7 +34,7 @@ export default function PluginSheet({
             ) : (
                 <>
                     <RN.View style={{ alignItems: "center", marginBottom: 8 }}>
-                        <Discord.Text variant="heading-lg/bold">
+                        <Discord.Text variant={"heading-lg/bold"}>
                             This plugin is{" "}
                             {instance.flags & PluginFlags.Enabled
                                 ? "running normally!"

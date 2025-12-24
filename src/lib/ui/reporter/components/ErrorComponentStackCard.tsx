@@ -24,24 +24,24 @@ export default function ErrorComponentStackCard(props: {
     return (
         <Discord.Card>
             <View style={{ gap: 8 }}>
-                <Discord.Text variant="heading-lg/bold">
+                <Discord.Text variant={"heading-lg/bold"}>
                     Component Stack
                 </Discord.Text>
                 <View style={{ gap: 4 }}>
                     {stack.map((component) => (
                         <View style={{ flexDirection: "row" }}>
                             <Discord.Text
-                                variant="text-md/bold"
-                                color="text-default"
+                                variant={"text-md/bold"}
+                                color={"text-default"}
                             >
                                 {"<"}
                             </Discord.Text>
-                            <Discord.Text variant="text-md/bold">
+                            <Discord.Text variant={"text-md/bold"}>
                                 {component.componentName}
                             </Discord.Text>
                             <Discord.Text
-                                variant="text-md/bold"
-                                color="text-default"
+                                variant={"text-md/bold"}
+                                color={"text-default"}
                             >
                                 {"/>"}
                             </Discord.Text>
@@ -58,7 +58,7 @@ export default function ErrorComponentStackCard(props: {
                     }}
                 >
                     <Discord.Button
-                        variant="secondary"
+                        variant={"secondary"}
                         text={`Show ${collapsed ? "more" : "less"}`}
                         icon={findAssetId(
                             collapsed
@@ -68,8 +68,8 @@ export default function ErrorComponentStackCard(props: {
                         onPress={() => setCollapsed((v) => !v)}
                     />
                     <Discord.Button
-                        variant="secondary"
-                        text="Copy"
+                        variant={"secondary"}
+                        text={"Copy"}
                         icon={findAssetId("CopyIcon")}
                         onPress={() =>
                             clipboard.setString(props.componentStack)

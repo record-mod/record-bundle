@@ -26,18 +26,20 @@ export default function EvaluateJavaScriptScreen() {
                 <Stack spacing={16}>
                     <TextArea
                         onChange={(v: string) => setCode(v)}
-                        placeholder="record.metro.findByProps"
+                        placeholder={"record.metro.findByProps"}
                     />
                     <TableRowGroup title={"Options"}>
                         <TableSwitchRow
-                            label="Await result"
-                            subLabel="Should the result be awaited."
+                            label={"Await result"}
+                            subLabel={"Should the result be awaited."}
                             value={awaitResult}
                             onValueChange={setAwaitResult}
                         />
                         <TableSwitchRow
-                            label="Show hidden"
-                            subLabel="Should the result contain hidden properties."
+                            label={"Show hidden"}
+                            subLabel={
+                                "Should the result contain hidden properties."
+                            }
                             value={showHidden}
                             onValueChange={setShowHidden}
                         />
@@ -62,7 +64,7 @@ export default function EvaluateJavaScriptScreen() {
                                 setResult(util.inspect(e));
                             }
                         }}
-                        text="Evaluate"
+                        text={"Evaluate"}
                     />
                     <Codeblock>{result}</Codeblock>
                 </Stack>
