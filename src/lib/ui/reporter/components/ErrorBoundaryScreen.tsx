@@ -3,7 +3,7 @@ import { BundleUpdaterManager } from "@lib/api/native/modules";
 import Codeblock from "@lib/ui/components/Codeblock";
 import { createStyles } from "@lib/ui/styles";
 import { tokens } from "@metro/common";
-import { Discord, SafeAreaView } from "@metro/common/components";
+import { Text, Card, Button, SafeAreaView } from "@metro/common/components";
 import { ScrollView, View } from "react-native";
 
 import ErrorComponentStackCard from "./ErrorComponentStackCard";
@@ -28,11 +28,11 @@ export default function ErrorBoundaryScreen(props: {
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ gap: 4 }}>
-                <Discord.Text variant={"display-lg"}>Uh oh.</Discord.Text>
-                <Discord.Text variant={"text-md/normal"}>
+                <Text variant={"display-lg"}>Uh oh.</Text>
+                <Text variant={"text-md/normal"}>
                     A crash occurred while rendering a component. This could be
                     caused by ReCord, or Discord itself.
-                </Discord.Text>
+                </Text>
             </View>
             <ScrollView contentContainerStyle={{ gap: 12 }}>
                 <Codeblock selectable={true}>{props.error.message}</Codeblock>
@@ -45,17 +45,17 @@ export default function ErrorBoundaryScreen(props: {
                     />
                 ) : null}
             </ScrollView>
-            <Discord.Card style={{ gap: 6 }}>
-                <Discord.Button
+            <Card style={{ gap: 6 }}>
+                <Button
                     text={"Reload Discord"}
                     onPress={() => BundleUpdaterManager.reload()}
                 />
-                <Discord.Button
+                <Button
                     variant={"destructive"}
                     text={"Retry Render"}
                     onPress={() => props.rerender()}
                 />
-            </Discord.Card>
+            </Card>
         </SafeAreaView>
     );
 }

@@ -1,6 +1,12 @@
 import Codeblock from "@lib/ui/components/Codeblock";
 import { showSheet } from "@lib/ui/sheets";
-import { Discord } from "@metro/common/components";
+import {
+    Button,
+    Card,
+    Stack,
+    Text,
+    TwinButtons,
+} from "@metro/common/components";
 import { ReactNode } from "react";
 
 import ErrorDetailsActionSheet from "./ErrorDetailsActionSheet";
@@ -13,8 +19,6 @@ interface ErrorCardProps {
     header?: string | ReactNode;
     onRetryRender?: () => void;
 }
-
-const { Button, Card, Stack, Text, TwinButtons } = Discord;
 
 export default function ErrorCard(props: ErrorCardProps) {
     return (

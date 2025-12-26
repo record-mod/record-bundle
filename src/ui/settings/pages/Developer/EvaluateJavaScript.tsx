@@ -4,7 +4,7 @@ import {
     Stack,
     TableRowGroup,
     TableSwitchRow,
-    Discord,
+    Button,
 } from "@metro/common/components";
 import { React } from "@metro/common";
 import { ScrollView } from "react-native";
@@ -44,7 +44,7 @@ export default function EvaluateJavaScriptScreen() {
                             onValueChange={setShowHidden}
                         />
                     </TableRowGroup>
-                    <Discord.Button
+                    <Button
                         onPress={async function onPress() {
                             try {
                                 const res = (0, eval)(

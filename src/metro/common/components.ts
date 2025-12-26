@@ -16,11 +16,14 @@ const bySingularProp = createFilterDefinition<[string]>(
     (prop) => `record.metro.common.components.bySingularProp(${prop})`
 );
 
-const findSingular = (prop: string) =>
-    proxyLazy(() => findExports(bySingularProp(prop))?.[prop]);
-const findProp = (prop: string) => proxyLazy(() => findByProps(prop)[prop]);
+const getRenderable = (obj: any, prop: string) =>
+    obj?.[prop]?.render ?? obj?.[prop];
 
-// TODO: Fix, alot of these are broken
+const findSingular = (prop: string) =>
+    proxyLazy(() => getRenderable(findExports(bySingularProp(prop)), prop));
+
+const findProp = (prop: string) =>
+    proxyLazy(() => getRenderable(findByProps(prop), prop));
 
 // Discord
 export const LegacyAlert = findByDisplayNameLazy("FluxContainer(Alert)");
@@ -35,7 +38,7 @@ export const { SafeAreaView, SafeAreaProvider, useSafeAreaInsets } =
 export const ActionSheetRow = findProp("ActionSheetRow");
 
 // Buttons
-export const Button = findSingular("Button") as t.Button;
+export const Button = findProp("Button") as t.Button;
 export const TwinButtons = findByProps("TwinButtons").TwinButtons;
 export const IconButton = findSingular("IconButton") as t.IconButton;
 export const RowButton = findProp("RowButton") as t.RowButton;
@@ -65,6 +68,8 @@ export const RedesignCompat = proxyLazy(
 
 // Misc.
 export const Stack = findProp("Stack") as t.Stack;
+export const ContextMenu = findProp("ContextMenu");
+export const AlertModal = findProp("AlertModal");
 
 // Inputs
 export const TextInput = findSingular("TextInput") as t.TextInput;
@@ -89,13 +94,10 @@ export const FloatingActionButton = findProp(
 export const ActionSheet = findByProps("ActionSheet").ActionSheet;
 export const BottomSheetTitleHeader = findProp("BottomSheetTitleHeader");
 
-export const { Text } = findByProps("Text");
-
-export const Discord: t.DiscordType = findByProps(
-    "createStyles",
-    "dismissAlerts",
-    "ContextMenu"
-);
+const textsModule = findByPropsLazy("Text", "LegacyText");
+export const Text = proxyLazy(() =>
+    getRenderable(textsModule, "Text")
+) as t.Text;
 
 export const Forms = findByPropsLazy("Form", "FormSection");
 

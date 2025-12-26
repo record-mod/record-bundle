@@ -13,12 +13,12 @@ import {
 import ReCord from "@assets/icons/ReCord.png";
 import { ScrollView } from "react-native";
 import { getValue, setValue } from "@lib/api/native/modules/store";
-import { Discord, React } from "@metro/common";
+import { NavigationNative, React } from "@metro/common";
 import ErrorBoundary from "@lib/ui/reporter/components/ErrorBoundary";
 
 export default function ReCordSettings() {
     const Constants = NativeClientInfoModule.getConstants();
-    const navigation = Discord.useNavigation();
+    const navigation = NavigationNative.useNavigation();
 
     const [isDevMode, setIsDevMode] = React.useState(false);
 

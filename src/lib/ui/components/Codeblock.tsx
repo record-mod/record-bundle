@@ -1,5 +1,5 @@
 import { constants } from "@metro/common";
-import { Discord } from "@metro/common/components";
+import { Text } from "@metro/common/components";
 import { semanticColors } from "@ui/color";
 import { createStyles } from "@ui/styles";
 
@@ -29,11 +29,11 @@ export default function Codeblock({
     children,
 }: CodeblockProps) {
     return (
-        <Discord.Text
+        <Text
             selectable={selectable}
             style={[useStyles().codeBlock, style && style]}
         >
             {children}
-        </Discord.Text>
+        </Text>
     );
 }

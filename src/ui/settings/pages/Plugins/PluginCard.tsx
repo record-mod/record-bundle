@@ -1,4 +1,10 @@
-import { Discord, TableSwitch } from "@metro/common/components";
+import {
+    TableSwitch,
+    Card,
+    Stack,
+    Text,
+    IconButton,
+} from "@metro/common/components";
 import { instances, tryStartPluginLate, tryStopPlugin } from "@plugins";
 import { PluginFlags } from "@plugins/types";
 import { React, ReactNative as RN } from "@metro/common";
@@ -22,7 +28,7 @@ export default function PluginCard({ id }: { id: string }) {
     }, [isEnabled]);
 
     return (
-        <Discord.Card>
+        <Card>
             <RN.View
                 style={{
                     flex: 1,
@@ -32,26 +38,24 @@ export default function PluginCard({ id }: { id: string }) {
                 }}
             >
                 <RN.View>
-                    <Discord.Stack spacing={8}>
-                        <Discord.Text variant={"heading-lg/semibold"}>
+                    <Stack spacing={8}>
+                        <Text variant={"heading-lg/semibold"}>
                             {pluginInstance?.manifest.name}
-                        </Discord.Text>
-                        <Discord.Text variant={"heading-sm/semibold"}>
+                        </Text>
+                        <Text variant={"heading-sm/semibold"}>
                             {pluginInstance?.manifest.id} -{" "}
                             {pluginInstance?.manifest.version}
-                        </Discord.Text>
-                        <Discord.Text variant={"heading-md/semibold"}>
-                            Enabled
-                        </Discord.Text>
+                        </Text>
+                        <Text variant={"heading-md/semibold"}>Enabled</Text>
                         {pluginInstance?.flags! & PluginFlags.Errored && (
-                            <Discord.Text
+                            <Text
                                 variant={"heading-md/semibold"}
                                 color={"text-feedback-critical"}
                             >
                                 This plugin has error(s)!
-                            </Discord.Text>
+                            </Text>
                         )}
-                    </Discord.Stack>
+                    </Stack>
                 </RN.View>
                 <RN.View style={{ justifyContent: "space-between" }}>
                     <RN.View
@@ -62,7 +66,7 @@ export default function PluginCard({ id }: { id: string }) {
                             gap: 8,
                         }}
                     >
-                        <Discord.IconButton
+                        <IconButton
                             icon={findAssetId("CircleInformationIcon")}
                             variant={"secondary"}
                             size={"sm"}
@@ -90,6 +94,6 @@ export default function PluginCard({ id }: { id: string }) {
                     </RN.View>
                 </RN.View>
             </RN.View>
-        </Discord.Card>
+        </Card>
     );
 }

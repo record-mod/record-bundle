@@ -245,7 +245,7 @@ type TextProps = React.ComponentProps<typeof RN.Text> & {
     lineClamp?: number;
     maxFontSizeMultiplier?: number;
 };
-export type Text = typeof React.Component<TextProps>;
+export type Text = React.FC<TextProps>;
 
 export type DiscordType = {
     Text: Text;

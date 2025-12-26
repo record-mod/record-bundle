@@ -1,4 +1,4 @@
-import { Discord } from "@metro/common/components";
+import { ContextMenu, IconButton } from "@metro/common/components";
 import { React } from "@metro/common";
 import { findAssetId } from "@/lib/api/assets";
 import SelectedFilterIcon from "@assets/icons/SelectedFilterIcon.png";
@@ -22,7 +22,7 @@ export function AssetFiltersMenu({
     }, [filter]);
 
     return (
-        <Discord.ContextMenu
+        <ContextMenu
             title={"Asset Filters"}
             items={Object.values(Filters).map((value) => ({
                 label: value,
@@ -37,13 +37,13 @@ export function AssetFiltersMenu({
             }))}
         >
             {(props: any) => (
-                <Discord.IconButton
+                <IconButton
                     icon={findAssetId("FiltersHorizontalIcon")}
                     variant={"tertiary"}
                     size={"md"}
                     {...props}
                 />
             )}
-        </Discord.ContextMenu>
+        </ContextMenu>
     );
 }

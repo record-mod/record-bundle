@@ -1,10 +1,5 @@
-import { NavigationNative } from "@metro/common";
-import {
-    Discord,
-    Stack,
-    TableRow,
-    TableRowGroup,
-} from "@metro/common/components";
+import { Discord, NavigationNative } from "@metro/common";
+import { Stack, TableRow, TableRowGroup } from "@metro/common/components";
 import { ScrollView } from "react-native";
 import { findAssetId } from "@lib/api/assets";
 import { findByProps } from "@metro";

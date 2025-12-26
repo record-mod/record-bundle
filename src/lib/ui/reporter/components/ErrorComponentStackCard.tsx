@@ -4,7 +4,7 @@ import {
 } from "@lib/ui/reporter/utils/parseComponentStack";
 import { findAssetId } from "@lib/api/assets";
 import { clipboard } from "@metro/common";
-import { Discord } from "@metro/common/components";
+import { Card, Text, Button } from "@metro/common/components";
 import { useState } from "react";
 import { View } from "react-native";
 
@@ -22,33 +22,31 @@ export default function ErrorComponentStackCard(props: {
     }
 
     return (
-        <Discord.Card>
+        <Card>
             <View style={{ gap: 8 }}>
-                <Discord.Text variant={"heading-lg/bold"}>
-                    Component Stack
-                </Discord.Text>
+                <Text variant={"heading-lg/bold"}>Component Stack</Text>
                 <View style={{ gap: 4 }}>
                     {stack.map((component) => (
                         <View style={{ flexDirection: "row" }}>
-                            <Discord.Text
+                            <Text
                                 variant={"text-md/bold"}
                                 color={"text-default"}
                             >
                                 {"<"}
-                            </Discord.Text>
-                            <Discord.Text variant={"text-md/bold"}>
+                            </Text>
+                            <Text variant={"text-md/bold"}>
                                 {component.componentName}
-                            </Discord.Text>
-                            <Discord.Text
+                            </Text>
+                            <Text
                                 variant={"text-md/bold"}
                                 color={"text-default"}
                             >
                                 {"/>"}
-                            </Discord.Text>
+                            </Text>
                         </View>
                     ))}
                 </View>
-                {collapsed && <Discord.Text>...</Discord.Text>}
+                {collapsed && <Text>...</Text>}
                 <View
                     style={{
                         gap: 8,
@@ -57,7 +55,7 @@ export default function ErrorComponentStackCard(props: {
                         alignItems: "center",
                     }}
                 >
-                    <Discord.Button
+                    <Button
                         variant={"secondary"}
                         text={`Show ${collapsed ? "more" : "less"}`}
                         icon={findAssetId(
@@ -67,7 +65,7 @@ export default function ErrorComponentStackCard(props: {
                         )}
                         onPress={() => setCollapsed((v) => !v)}
                     />
-                    <Discord.Button
+                    <Button
                         variant={"secondary"}
                         text={"Copy"}
                         icon={findAssetId("CopyIcon")}
@@ -77,6 +75,6 @@ export default function ErrorComponentStackCard(props: {
                     />
                 </View>
             </View>
-        </Discord.Card>
+        </Card>
     );
 }

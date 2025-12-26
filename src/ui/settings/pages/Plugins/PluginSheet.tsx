@@ -1,4 +1,9 @@
-import { ActionSheet, Discord } from "@metro/common/components";
+import {
+    ActionSheet,
+    Text,
+    TableRowGroup,
+    TableRow,
+} from "@metro/common/components";
 import { InternalPluginInstance, PluginFlags } from "@plugins/types";
 import { ReactNative as RN } from "@metro/common";
 
@@ -10,36 +15,36 @@ export default function PluginSheet({
     return (
         <ActionSheet>
             <RN.View style={{ alignItems: "center" }}>
-                <Discord.Text variant={"heading-xl/bold"}>
+                <Text variant={"heading-xl/bold"}>
                     {instance.manifest.name}
-                </Discord.Text>
+                </Text>
             </RN.View>
             {instance.flags & PluginFlags.Errored ? (
                 <>
                     <RN.View style={{ alignItems: "center", marginBottom: 8 }}>
-                        <Discord.Text variant={"heading-lg/bold"}>
+                        <Text variant={"heading-lg/bold"}>
                             This plugin had error(s):
-                        </Discord.Text>
+                        </Text>
                     </RN.View>
-                    <Discord.TableRowGroup label={"Errors"}>
+                    <TableRowGroup label={"Errors"}>
                         {instance.errors.map((e) => (
-                            <Discord.TableRow
+                            <TableRow
                                 label={e.message}
                                 subLabel={e.time}
                                 variant={"danger"}
                             />
                         ))}
-                    </Discord.TableRowGroup>
+                    </TableRowGroup>
                 </>
             ) : (
                 <>
                     <RN.View style={{ alignItems: "center", marginBottom: 8 }}>
-                        <Discord.Text variant={"heading-lg/bold"}>
+                        <Text variant={"heading-lg/bold"}>
                             This plugin is{" "}
                             {instance.flags & PluginFlags.Enabled
                                 ? "running normally!"
                                 : "currently disabled."}
-                        </Discord.Text>
+                        </Text>
                     </RN.View>
                 </>
             )}

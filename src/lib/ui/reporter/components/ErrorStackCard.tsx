@@ -3,13 +3,11 @@ import parseErrorStack, {
 } from "@lib/ui/reporter/utils/parseErrorStack";
 import { findAssetId } from "@lib/api/assets";
 import { clipboard, constants } from "@metro/common";
-import { Discord } from "@metro/common/components";
+import { Card, Text, Button } from "@metro/common/components";
 import { useState } from "react";
 import { Pressable, View } from "react-native";
 
 import { INDEX_BUNDLE_FILE } from "./ErrorCard";
-
-const { Card, Text, Button } = Discord;
 
 export default function ErrorStackCard(props: {
     error: Error & { stack: string };

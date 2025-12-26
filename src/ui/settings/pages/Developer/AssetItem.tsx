@@ -1,5 +1,11 @@
 import { Asset, findAssetId } from "@lib/api/assets";
-import { Discord, TableRow } from "@metro/common/components";
+import { Discord } from "@/metro/common";
+import {
+    AlertModal,
+    Text,
+    TableRowGroup,
+    TableRow,
+} from "@metro/common/components";
 import { Image } from "react-native";
 
 const displayable = new Set(["png", "jpg", "svg"]);
@@ -13,7 +19,7 @@ const iconMap = {
 
 export default function AssetItem({ asset }: { asset: Asset }) {
     return (
-        <Discord.TableRow
+        <TableRow
             label={asset.name}
             subLabel={`ID: ${asset.id} Type: ${asset.type}`}
             icon={
@@ -36,7 +42,7 @@ export default function AssetItem({ asset }: { asset: Asset }) {
             onPress={() => {
                 Discord.openAlert(
                     "AssetItemDetails",
-                    <Discord.AlertModal
+                    <AlertModal
                         title={"Asset Preview"}
                         extraContent={
                             <>
@@ -52,7 +58,7 @@ export default function AssetItem({ asset }: { asset: Asset }) {
                                         }}
                                     />
                                 ) : (
-                                    <Discord.Text
+                                    <Text
                                         variant={"text-sm/medium"}
                                         color={"text-feedback-critical"}
                                         style={{
@@ -62,35 +68,35 @@ export default function AssetItem({ asset }: { asset: Asset }) {
                                     >
                                         Asset type {asset.type.toUpperCase()} is
                                         not supported for preview.
-                                    </Discord.Text>
+                                    </Text>
                                 )}
-                                <Discord.TableRowGroup>
-                                    <Discord.TableRow
+                                <TableRowGroup>
+                                    <TableRow
                                         label={"Name"}
                                         trailing={
-                                            <Discord.TableRow.TrailingText
+                                            <TableRow.TrailingText
                                                 text={asset.name}
                                             />
                                         }
                                     />
-                                    <Discord.TableRow
+                                    <TableRow
                                         label={"Asset ID"}
                                         trailing={
-                                            <Discord.TableRow.TrailingText
+                                            <TableRow.TrailingText
                                                 text={asset.id}
                                             />
                                         }
                                     />
-                                    <Discord.TableRow
+                                    <TableRow
                                         label={"Type"}
                                         trailing={
-                                            <Discord.TableRow.TrailingText
+                                            <TableRow.TrailingText
                                                 text={asset.type}
                                             />
                                         }
                                     />
-                                </Discord.TableRowGroup>
-                                <Discord.Text
+                                </TableRowGroup>
+                                <Text
                                     variant={"text-sm/medium"}
                                     style={{
                                         width: "100%",
@@ -101,10 +107,10 @@ export default function AssetItem({ asset }: { asset: Asset }) {
                                     consistent across app launches and app
                                     versions and therefore they should not be
                                     relied on unless absolutely needed.
-                                </Discord.Text>
+                                </Text>
                             </>
                         }
-                    ></Discord.AlertModal>
+                    ></AlertModal>
                 );
             }}
         />

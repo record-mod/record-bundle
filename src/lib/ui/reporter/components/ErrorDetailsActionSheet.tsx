@@ -1,12 +1,10 @@
 import { hasStack, isComponentStack } from "@lib/ui/reporter/utils/isStack";
 import Codeblock from "@lib/ui/components/Codeblock";
-import { ActionSheet, Discord } from "@metro/common/components";
+import { ActionSheet, Text } from "@metro/common/components";
 import { View } from "react-native";
 
 import ErrorComponentStackCard from "./ErrorComponentStackCard";
 import ErrorStackCard from "./ErrorStackCard";
-
-const { Text } = Discord;
 
 export default function ErrorDetailsActionSheet(props: { error: Error }) {
     return (

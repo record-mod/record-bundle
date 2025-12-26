@@ -1,5 +1,5 @@
 import { findAssetId } from "@lib/api/assets";
-import { Discord } from "@metro/common/components";
+import { TextInput } from "@metro/common/components";
 import ErrorBoundary from "@ui/reporter/components/ErrorBoundary";
 import { Image, View, ViewStyle } from "react-native";
 
@@ -30,7 +30,7 @@ export default ({ onChangeText, placeholder, style, isRound }: SearchProps) => {
     return (
         <ErrorBoundary>
             <View style={style}>
-                <Discord.TextInput
+                <TextInput
                     grow={true}
                     isClearable={true}
                     leadingIcon={SearchIcon}

@@ -2,7 +2,7 @@ import { iterateAssets } from "@lib/api/assets";
 import Search from "@lib/ui/components/Search";
 import ErrorBoundary from "@lib/ui/reporter/components/ErrorBoundary";
 import { React } from "@metro/common";
-import { Discord } from "@metro/common/components";
+import { TableRowGroup } from "@metro/common/components";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";
 import AssetItem from "./AssetItem";
@@ -47,7 +47,7 @@ export default function AssetBrowser() {
                         backgroundColor: "transparent",
                     }}
                 >
-                    <Discord.TableRowGroup>
+                    <TableRowGroup>
                         <FlatList
                             data={all
                                 .filter(
@@ -64,7 +64,7 @@ export default function AssetBrowser() {
                                 <AssetItem asset={item} />
                             )}
                         />
-                    </Discord.TableRowGroup>
+                    </TableRowGroup>
                 </View>
             </View>
         </ErrorBoundary>

@@ -3,7 +3,7 @@ import { instances } from "@plugins";
 import { View } from "react-native";
 import PluginCard from "./PluginCard";
 import Search from "@/lib/ui/components/Search";
-import { Discord } from "@/metro/common/components";
+import { Stack } from "@/metro/common/components";
 
 export default function PluginsPage() {
     const allPlugins = Array.from(instances);
@@ -24,7 +24,7 @@ export default function PluginsPage() {
 
     return (
         <View style={{ padding: 10 }}>
-            <Discord.Stack spacing={16}>
+            <Stack spacing={16}>
                 <Search
                     onChangeText={setQuery}
                     placeholder={"Search plugins"}
@@ -34,7 +34,7 @@ export default function PluginsPage() {
                     data={plugins}
                     renderItem={({ item: [id, _] }) => <PluginCard id={id} />}
                 />
-            </Discord.Stack>
+            </Stack>
         </View>
     );
 }
