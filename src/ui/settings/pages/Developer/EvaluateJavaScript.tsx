@@ -17,6 +17,7 @@ const { TextArea } = findByPropsLazy("Stack", "Button");
 export default function EvaluateJavaScriptScreen() {
     const [code, setCode] = React.useState("");
     const [awaitResult, setAwaitResult] = React.useState(true);
+    const [isLoading, setIsLoading] = React.useState(false);
     const [showHidden, setShowHidden] = React.useState(true);
     const [result, setResult] = React.useState("undefined");
 
@@ -47,10 +48,11 @@ export default function EvaluateJavaScriptScreen() {
                     <Button
                         onPress={async function onPress() {
                             try {
+                                setIsLoading(true);
                                 const res = (0, eval)(
                                     `${code}//# sourceURL=ReCordEval`
                                 );
-                                setResult("Loading...");
+
                                 const inspected = util.inspect(
                                     awaitResult ? await res : res,
                                     {
@@ -60,10 +62,13 @@ export default function EvaluateJavaScriptScreen() {
                                 );
 
                                 setResult(inspected);
+                                setIsLoading(false);
                             } catch (e) {
                                 setResult(util.inspect(e));
+                                setIsLoading(false);
                             }
                         }}
+                        loading={isLoading}
                         text={"Evaluate"}
                     />
                     <Codeblock>{result}</Codeblock>
