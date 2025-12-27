@@ -3,6 +3,7 @@ import { defineCorePlugin } from "..";
 import { findByName } from "@metro";
 import { onJsxCreate } from "@lib/api/react/jsx";
 import { after } from "@lib/api/patcher";
+import { getPluginApi } from "../api";
 
 const useBadgesModule = findByName("useBadges", false);
 
@@ -16,6 +17,9 @@ defineCorePlugin({
         version: "1.0.0",
     },
     start() {
+        const pluginApi = getPluginApi(this.manifest.id);
+
+        pluginApi.logger.log("TEST");
         onJsxCreate("ProfileBadge", (_, ret) => {
             if (ret.props.id?.startsWith("record-")) {
                 const props = badgeProps[ret.props.id];

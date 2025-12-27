@@ -21,4 +21,5 @@ export const PluginFlags = {
 export type InternalPluginInstance = PluginInstance & {
     flags: number;
     errors: { message: string; time: string }[];
+    logs: { message: string; time: string }[];
 };

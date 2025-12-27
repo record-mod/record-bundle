@@ -26,7 +26,7 @@ export default function PluginSheet({
                             This plugin had error(s):
                         </Text>
                     </RN.View>
-                    <TableRowGroup label={"Errors"}>
+                    <TableRowGroup title={"Errors"}>
                         {instance.errors.map((e) => (
                             <TableRow
                                 label={e.message}
@@ -46,6 +46,11 @@ export default function PluginSheet({
                                 : "currently disabled."}
                         </Text>
                     </RN.View>
+                    <TableRowGroup title={"Logs"}>
+                        {instance.logs.map((l) => (
+                            <TableRow label={l.message} subLabel={l.time} />
+                        ))}
+                    </TableRowGroup>
                 </>
             )}
         </ActionSheet>

@@ -1,3 +1,4 @@
+import { makePluginApi, removePluginApi } from "./api";
 import { InternalPluginInstance, PluginFlags, PluginInstance } from "./types";
 
 export const corePlugins = new Map<string, PluginInstance>();
@@ -20,13 +21,16 @@ export function initPlugins() {
 
 export function tryStartPlugin(plugin: PluginInstance) {
     try {
-        plugin.start && plugin.start();
         instances.set(plugin.manifest.id, {
             ...plugin,
             flags: PluginFlags.Enabled,
             errors: [],
+            logs: [],
         });
+        makePluginApi(plugin.manifest.id);
+        plugin.start && plugin.start();
     } catch (e) {
+        removePluginApi(plugin.manifest.id);
         const errorString =
             e instanceof Error
                 ? `${e.name}: ${e.message}`
@@ -38,6 +42,7 @@ export function tryStartPlugin(plugin: PluginInstance) {
             ...plugin,
             flags: PluginFlags.Errored,
             errors: [{ message: errorString, time: new Date().toISOString() }],
+            logs: [],
         });
     }
 }
@@ -78,5 +83,7 @@ export function tryStopPlugin(id: string): boolean {
     } catch {
         // What do i even do in this situation 💔
         return false;
+    } finally {
+        removePluginApi(id);
     }
 }

@@ -17,15 +17,6 @@ export default function PluginCard({ id }: { id: string }) {
     const [isEnabled, setIsEnabled] = React.useState(
         Boolean(pluginInstance?.flags! & PluginFlags.Enabled)
     );
-    const [, forceUpdate] = React.useReducer(() => ({}), 0);
-
-    React.useEffect(() => {
-        if (isEnabled) {
-            setIsEnabled(tryStartPluginLate(id));
-        } else {
-            tryStopPlugin(id);
-        }
-    }, [isEnabled]);
 
     return (
         <Card>
@@ -87,8 +78,13 @@ export default function PluginCard({ id }: { id: string }) {
                         <TableSwitch
                             value={isEnabled}
                             onValueChange={(v: boolean) => {
-                                setIsEnabled(v);
-                                forceUpdate();
+                                if (v) {
+                                    const started = tryStartPluginLate(id);
+                                    setIsEnabled(started);
+                                } else {
+                                    tryStopPlugin(id);
+                                    setIsEnabled(false);
+                                }
                             }}
                         />
                     </RN.View>
