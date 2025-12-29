@@ -4,7 +4,7 @@ import { ScrollView } from "react-native";
 import ReCord from "@assets/icons/ReCord.png";
 import { debugInfo } from "@/lib/api/debug";
 import { findAssetId } from "@/lib/api/assets";
-import { info } from "@/lib/api/native/modules/loader";
+import { info } from "@/lib/api/native/modules/bridge";
 import { NativeClientInfoModule } from "@/lib/api/native/modules";
 
 export default function About() {

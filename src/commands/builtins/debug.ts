@@ -1,6 +1,6 @@
 import { debugInfo } from "@lib/api/debug";
 import { ApplicationCommand } from "../types";
-import { info } from "@lib/api/native/modules/loader";
+import { info } from "@lib/api/native/modules/bridge";
 import { messageUtil } from "@metro/common";
 import { NativeClientInfoModule } from "@lib/api/native/modules";
 

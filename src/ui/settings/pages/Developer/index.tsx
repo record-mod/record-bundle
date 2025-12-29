@@ -38,6 +38,16 @@ export default function ReCordDevtools() {
                         onPress={() => navigation.push("ASSETBROWSER")}
                     />
                     <TableRow
+                        arrow={true}
+                        label={"Loader Config"}
+                        icon={
+                            <TableRow.Icon
+                                source={findAssetId("DownloadIcon")}
+                            />
+                        }
+                        onPress={() => navigation.push("LOADERCONFIG")}
+                    />
+                    <TableRow
                         label={"Test ErrorBoundary"}
                         icon={
                             <TableRow.Icon

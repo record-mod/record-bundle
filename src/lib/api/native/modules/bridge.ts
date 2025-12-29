@@ -62,3 +62,15 @@ export function callBridgeMethodSync<R>(name: string, args: any[]) {
         throw new Error(`Bridge call failed: ${err}`);
     }
 }
+
+export const info = callBridgeMethodSync<BridgeInfo>("record.info", []);
+
+interface BridgeInfo {
+    name: string;
+    version: number;
+    android: {
+        version: number;
+        api: number;
+        codeName: string;
+    };
+}

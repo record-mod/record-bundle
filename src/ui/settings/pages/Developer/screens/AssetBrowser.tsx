@@ -5,8 +5,8 @@ import { React } from "@metro/common";
 import { TableRowGroup } from "@metro/common/components";
 import { useMemo } from "react";
 import { FlatList, View } from "react-native";
-import AssetItem from "./AssetItem";
-import { AssetFiltersMenu } from "./AssetFilters";
+import AssetItem from "../components/AssetItem";
+import { AssetFiltersMenu } from "../components/AssetFilters";
 
 const displayable = new Set(["png", "jpg", "svg"]);
 

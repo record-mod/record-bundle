@@ -7,11 +7,12 @@ import ReCordSettings from "./pages/General";
 import ReCordDevtools from "./pages/Developer";
 import PluginsPage from "./pages/Plugins";
 import { TableRow, TableRowIcon } from "@metro/common/components";
-import EvaluateJavaScriptScreen from "./pages/Developer/EvaluateJavaScript";
-import AssetBrowser from "./pages/Developer/AssetBrowser";
+import EvaluateJavaScriptScreen from "./pages/Developer/screens/EvaluateJavaScript";
+import AssetBrowser from "./pages/Developer/screens/AssetBrowser";
 import { CustomPage } from "./patches/shared";
 import { debugInfo } from "@/lib/api/debug";
 import About from "./pages/General/About";
+import { LoaderConfig } from "./pages/Developer/screens/LoaderConfig";
 
 export default function initSettings() {
     registerSection({
@@ -102,6 +103,19 @@ export const entries: { [key: string]: SettingsEntry } = {
         screen: {
             route: "ABOUT",
             getComponent: () => About,
+        },
+    },
+    LOADERCONFIG: {
+        type: "route",
+        excludeFromDisplay: true,
+        get title() {
+            return "Loader Config";
+        },
+        section: "ReCord",
+        key: "LOADERCONFIG",
+        screen: {
+            route: "LOADERCONFIG",
+            getComponent: () => LoaderConfig,
         },
     },
 };

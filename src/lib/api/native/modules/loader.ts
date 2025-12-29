@@ -1,23 +1,24 @@
 import { callBridgeMethodSync } from "./bridge";
 
-export const info = callBridgeMethodSync<BridgeInfo>("record.info", []);
-
-interface BridgeInfo {
-    name: string;
-    version: number;
-    android: {
-        version: number;
-        api: number;
-        codeName: string;
-    };
-}
-
-interface LoaderConfig {
+export interface LoaderConfig {
     isCustomBundle?: boolean;
     customBundleUrl?: string;
 }
 
-export const loaderConfig = callBridgeMethodSync<LoaderConfig>(
-    "record.loader.getConfig",
-    []
-);
+// TODO: Add bridge method to get loader constants (e.g. default URL)
+export const loaderConfig = {
+    get currentConfig() {
+        return callBridgeMethodSync<LoaderConfig>(
+            "record.loader.getConfig",
+            []
+        );
+    },
+
+    configure(config: LoaderConfig) {
+        callBridgeMethodSync("record.loader.configureLoader", [config]);
+    },
+
+    reset() {
+        callBridgeMethodSync("record.loader.resetConfig", []);
+    },
+};
