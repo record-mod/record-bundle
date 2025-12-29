@@ -24,10 +24,17 @@ export function LoaderConfig() {
         ...bridgeLoaderConfig,
         currentUrl: bridgeLoaderConfig.customBundleUrl ?? DEFAULT_BUNDLE_URL,
     });
+    const [changed, setChanged] = React.useState(false);
 
-    React.useEffect(() => {
+    const updateConfig = () => {
         loaderConfig.configure(config);
-    }, [config]);
+        toasts.open({
+            key: "reload-after-reset",
+            content: "A reload is required to apply changes.",
+            icon: findAssetId("RetryIcon"),
+        });
+        setChanged(false);
+    };
 
     return (
         <ErrorBoundary>
@@ -70,6 +77,7 @@ export function LoaderConfig() {
                                         "A reload is required to apply changes.",
                                     icon: findAssetId("RetryIcon"),
                                 });
+                                setChanged(false);
                             }}
                         />
                         <TableSwitchRow
@@ -87,22 +95,39 @@ export function LoaderConfig() {
                                           DEFAULT_BUNDLE_URL
                                         : prev.customBundleUrl,
                                 }));
+                                setChanged(true);
                             }}
                         />
                         {config.isCustomBundle && (
+                            <>
+                                <TableRow
+                                    label={
+                                        <TextInput
+                                            defaultValue={
+                                                config.customBundleUrl ?? ""
+                                            }
+                                            size={"md"}
+                                            onChange={(v) => {
+                                                setConfig((prev) => ({
+                                                    ...prev,
+                                                    customBundleUrl: v,
+                                                }));
+                                                setChanged(true);
+                                            }}
+                                        />
+                                    }
+                                />
+                            </>
+                        )}
+                        {changed && (
                             <TableRow
-                                label={
-                                    <TextInput
-                                        defaultValue={config.customBundleUrl}
-                                        size={"md"}
-                                        onChange={(v) => {
-                                            setConfig((prev) => ({
-                                                ...prev,
-                                                customBundleUrl: v,
-                                            }));
-                                        }}
+                                label={"Save Changes"}
+                                icon={
+                                    <TableRow.Icon
+                                        source={findAssetId("FileUpIcon")}
                                     />
                                 }
+                                onPress={updateConfig}
                             />
                         )}
                     </TableRowGroup>
