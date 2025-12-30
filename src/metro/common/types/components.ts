@@ -172,7 +172,8 @@ type TextColor =
     | "text-feedback-warning"
     | "text-feedback-positive"
     | "text-link"
-    | "text-brand";
+    | "text-brand"
+    | "text-muted";
 
 type TextStyles =
     | "heading-sm/normal"

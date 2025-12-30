@@ -15,7 +15,7 @@ import PluginSheet from "./PluginSheet";
 export default function PluginCard({ id }: { id: string }) {
     const pluginInstance = instances.get(id);
     const [isEnabled, setIsEnabled] = React.useState(
-        Boolean(pluginInstance?.flags! & PluginFlags.Enabled)
+        Boolean(pluginInstance?.flags! & PluginFlags.Enabled),
     );
 
     return (
@@ -29,15 +29,20 @@ export default function PluginCard({ id }: { id: string }) {
                 }}
             >
                 <RN.View>
-                    <Stack spacing={8}>
+                    <Stack spacing={4}>
                         <Text variant={"heading-lg/semibold"}>
                             {pluginInstance?.manifest.name}
+                        </Text>
+                        <Text variant={"text-sm/semibold"} color={"text-muted"}>
+                            by{" "}
+                            {pluginInstance?.manifest.authors
+                                .map((a) => a.name)
+                                .join(", ")}
                         </Text>
                         <Text variant={"heading-sm/semibold"}>
                             {pluginInstance?.manifest.id} -{" "}
                             {pluginInstance?.manifest.version}
                         </Text>
-                        <Text variant={"heading-md/semibold"}>Enabled</Text>
                         {pluginInstance?.flags! & PluginFlags.Errored && (
                             <Text
                                 variant={"heading-md/semibold"}
@@ -72,7 +77,7 @@ export default function PluginCard({ id }: { id: string }) {
                         style={{
                             justifyContent: "center",
                             alignItems: "center",
-                            marginTop: 16,
+                            marginTop: 8,
                         }}
                     >
                         <TableSwitch

@@ -99,6 +99,10 @@ export const Text = proxyLazy(() =>
     getRenderable(textsModule, "Text")
 ) as t.Text;
 
+export const AvatarPile = findSingular("AvatarPile");
+
+export const Avatar = findByProps("AvatarSizes", "getStatusSize").default;
+
 export const Forms = findByPropsLazy("Form", "FormSection");
 
 export const {

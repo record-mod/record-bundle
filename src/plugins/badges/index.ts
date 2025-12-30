@@ -14,6 +14,12 @@ defineCorePlugin({
     manifest: {
         name: "Badges",
         id: "record.badges",
+        authors: [
+            {
+                name: "tralwdwdd",
+                id: "1278723517436788897",
+            },
+        ],
         version: "1.0.0",
     },
     start() {
@@ -61,7 +67,7 @@ defineCorePlugin({
                         icon: " _",
                     });
                 });
-            })
+            }),
         );
     },
 

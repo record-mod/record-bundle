@@ -7,6 +7,7 @@ export type PluginInstance = {
 export type PluginManifest = {
     name: string;
     id: string;
+    authors: { name: string; id: string }[];
     version: string;
 };
 
