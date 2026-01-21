@@ -1,6 +1,6 @@
 import ErrorBoundary from "@/lib/ui/reporter/components/ErrorBoundary";
 import { Stack, TableRow, TableRowGroup } from "@/metro/common/components";
-import { ScrollView } from "react-native";
+import { Linking, ScrollView } from "react-native";
 import ReCord from "@assets/icons/ReCord.png";
 import { debugInfo } from "@/lib/api/debug";
 import { findAssetId } from "@/lib/api/assets";
@@ -10,6 +10,8 @@ import { NativeClientInfoModule } from "@/lib/api/native/modules";
 export default function About() {
     const Constants = NativeClientInfoModule.getConstants();
     const Runtime = (HermesInternal as any).getRuntimeProperties();
+
+    const github = "https://github.com/record-mod/record-bundle";
 
     return (
         <ErrorBoundary>
@@ -72,6 +74,22 @@ export default function About() {
                                     ].slice(7)}`}
                                 />
                             }
+                        />
+                    </TableRowGroup>
+                    <TableRowGroup title={"Links"}>
+                        <TableRow
+                            label={"Github"}
+                            icon={
+                                <TableRow.Icon
+                                    source={findAssetId(
+                                        "img_account_sync_github_white",
+                                    )}
+                                />
+                            }
+                            trailing={<TableRow.TrailingText text={github} />}
+                            onPress={() => {
+                                Linking.openURL(github);
+                            }}
                         />
                     </TableRowGroup>
                     <TableRowGroup title={"Platform"}>

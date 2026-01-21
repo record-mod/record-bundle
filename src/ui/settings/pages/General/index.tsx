@@ -22,15 +22,22 @@ export default function ReCordSettings() {
     const navigation = NavigationNative.useNavigation();
 
     const [isDevMode, setIsDevMode] = useState(false);
+    const [experimentsEnabled, setExperimentsEnabled] = useState(false);
 
     useEffect(() => {
-        const isDev = getValue("core", "experiments", false);
-
+        const isDev = getValue("core", "developer", false);
         setIsDevMode(isDev);
+
+        const experiments = getValue("core", "experiments", false);
+        setExperimentsEnabled(experiments);
     }, []);
 
     useEffect(() => {
-        setValue("core", "experiments", isDevMode);
+        setValue("core", "experiments", experimentsEnabled);
+    }, [experimentsEnabled]);
+
+    useEffect(() => {
+        setValue("core", "developer", isDevMode);
     }, [isDevMode]);
 
     return (
@@ -92,9 +99,9 @@ export default function ReCordSettings() {
                     </TableRowGroup>
                     <TableRowGroup title={"Misc"}>
                         <TableSwitchRow
-                            label={"Activate Discord Experiments"}
+                            label={"Developer Settings"}
                             subLabel={
-                                "Enable to be able to use Discord's Experiments."
+                                "Enable to be able to use ReCord developer options."
                             }
                             icon={
                                 <TableRow.Icon
@@ -103,6 +110,16 @@ export default function ReCordSettings() {
                             }
                             value={isDevMode}
                             onValueChange={setIsDevMode}
+                        />
+                        <TableSwitchRow
+                            label={"Activate Discord Experiments"}
+                            subLabel={
+                                "Enable to be able to use Discord's Experiments, this can result in account termination, use at your own risk!"
+                            }
+                            // Adds padding around the text.
+                            icon={<TableRow.Icon source={findAssetId("")!} />}
+                            value={experimentsEnabled}
+                            onValueChange={setExperimentsEnabled}
                         />
                     </TableRowGroup>
                 </Stack>

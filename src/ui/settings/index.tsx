@@ -13,6 +13,7 @@ import { CustomPage } from "./patches/shared";
 import { debugInfo } from "@/lib/api/debug";
 import About from "./pages/General/About";
 import { LoaderConfig } from "./pages/Developer/screens/LoaderConfig";
+import { getValue } from "@/lib/api/native/modules/store";
 
 export default function initSettings() {
     registerSection({
@@ -39,6 +40,9 @@ export default function initSettings() {
                 key: "DEVTOOLS",
                 title: () => "Developer",
                 icon: findAssetId("WrenchIcon"),
+                usePredicate() {
+                    return getValue("core", "developer", false);
+                },
                 render: () => <ReCordDevtools />,
             },
         ],
