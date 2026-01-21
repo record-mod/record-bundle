@@ -1,12 +1,6 @@
 import Codeblock from "@lib/ui/components/Codeblock";
 import { showSheet } from "@lib/ui/sheets";
-import {
-    Button,
-    Card,
-    Stack,
-    Text,
-    TwinButtons,
-} from "@metro/common/components";
+import { Button, Card, Stack, Text } from "@metro/common/components";
 import { ReactNode } from "react";
 
 import ErrorDetailsActionSheet from "./ErrorDetailsActionSheet";
@@ -32,27 +26,23 @@ export default function ErrorCard(props: ErrorCardProps) {
                     </Text>
                 )}
                 <Codeblock selectable={true}>{String(props.error)}</Codeblock>
-                <TwinButtons style={{ gap: 6 }}>
-                    {props.onRetryRender && (
-                        <Button
-                            variant={"destructive"}
-                            text={"Retry Render"}
-                            onPress={props.onRetryRender}
-                        />
-                    )}
-                    {props.error instanceof Error ? (
-                        <Button
-                            text={"Details"}
-                            onPress={() =>
-                                showSheet(
-                                    "ReCordErrorDetailsActionSheet",
-                                    ErrorDetailsActionSheet,
-                                    { error: props.error as Error }
-                                )
-                            }
-                        />
-                    ) : null}
-                </TwinButtons>
+
+                <Button
+                    variant={"destructive"}
+                    text={"Retry Render"}
+                    onPress={props.onRetryRender!}
+                />
+
+                <Button
+                    text={"Details"}
+                    onPress={() =>
+                        showSheet(
+                            "ReCordErrorDetailsActionSheet",
+                            ErrorDetailsActionSheet,
+                            { error: props.error as Error },
+                        )
+                    }
+                />
             </Stack>
         </Card>
     );

@@ -7,7 +7,6 @@ const BridgePromise = getNativeModule<NativeBridgePromise>("FileReaderModule");
 
 function makePayload(name: string, args: any[]) {
     return {
-        // For now since were using RevengeXposed
         record: {
             method: name,
             args,
@@ -23,11 +22,11 @@ function makePayload(name: string, args: any[]) {
  */
 export async function callBridgeMethod<R>(
     name: string,
-    args: any[]
+    args: any[],
 ): Promise<R> {
     try {
         const result = await BridgePromise?.readAsDataURL(
-            makePayload(name, args)
+            makePayload(name, args),
         );
 
         if ("error" in result) throw result.error;

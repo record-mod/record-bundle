@@ -7,20 +7,21 @@ import {
 } from "@metro/common/components";
 import { instances, tryStartPluginLate, tryStopPlugin } from "@plugins";
 import { PluginFlags } from "@plugins/types";
-import { React, ReactNative as RN } from "@metro/common";
+import { useState } from "react";
+import { View } from "react-native";
 import { findAssetId } from "@lib/api/assets";
 import { showSheet } from "@lib/ui/sheets";
 import PluginSheet from "./PluginSheet";
 
 export default function PluginCard({ id }: { id: string }) {
     const pluginInstance = instances.get(id);
-    const [isEnabled, setIsEnabled] = React.useState(
+    const [isEnabled, setIsEnabled] = useState(
         Boolean(pluginInstance?.flags! & PluginFlags.Enabled),
     );
 
     return (
         <Card>
-            <RN.View
+            <View
                 style={{
                     flex: 1,
                     flexDirection: "row",
@@ -28,7 +29,7 @@ export default function PluginCard({ id }: { id: string }) {
                     alignItems: "center",
                 }}
             >
-                <RN.View>
+                <View>
                     <Stack spacing={4}>
                         <Text variant={"heading-lg/semibold"}>
                             {pluginInstance?.manifest.name}
@@ -52,9 +53,9 @@ export default function PluginCard({ id }: { id: string }) {
                             </Text>
                         )}
                     </Stack>
-                </RN.View>
-                <RN.View style={{ justifyContent: "space-between" }}>
-                    <RN.View
+                </View>
+                <View style={{ justifyContent: "space-between" }}>
+                    <View
                         style={{
                             justifyContent: "center",
                             alignItems: "center",
@@ -72,8 +73,8 @@ export default function PluginCard({ id }: { id: string }) {
                                 });
                             }}
                         />
-                    </RN.View>
-                    <RN.View
+                    </View>
+                    <View
                         style={{
                             justifyContent: "center",
                             alignItems: "center",
@@ -92,9 +93,9 @@ export default function PluginCard({ id }: { id: string }) {
                                 }
                             }}
                         />
-                    </RN.View>
-                </RN.View>
-            </RN.View>
+                    </View>
+                </View>
+            </View>
         </Card>
     );
 }

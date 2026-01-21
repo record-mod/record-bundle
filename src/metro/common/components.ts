@@ -13,7 +13,7 @@ import * as t from "./types/components";
 
 const bySingularProp = createFilterDefinition<[string]>(
     ([prop], m) => m[prop] && Object.keys(m).length === 1,
-    (prop) => `record.metro.common.components.bySingularProp(${prop})`
+    (prop) => `record.metro.common.components.bySingularProp(${prop})`,
 );
 
 const getRenderable = (obj: any, prop: string) =>
@@ -39,7 +39,7 @@ export const ActionSheetRow = findProp("ActionSheetRow");
 
 // Buttons
 export const Button = findProp("Button") as t.Button;
-export const TwinButtons = findByProps("TwinButtons").TwinButtons;
+export const TwinButtons = findProp("TwinButtons");
 export const IconButton = findSingular("IconButton") as t.IconButton;
 export const RowButton = findProp("RowButton") as t.RowButton;
 
@@ -63,7 +63,7 @@ export const FormCheckbox = findSingular("FormCheckbox");
 // Card
 export const Card = findProp("Card");
 export const RedesignCompat = proxyLazy(
-    () => findByProps("RedesignCompat").RedesignCompat
+    () => findByProps("RedesignCompat").RedesignCompat,
 );
 
 // Misc.
@@ -76,27 +76,27 @@ export const TextInput = findSingular("TextInput") as t.TextInput;
 
 // SegmentedControl
 export const SegmentedControl = findProp(
-    "SegmentedControl"
+    "SegmentedControl",
 ) as t.SegmentedControl;
 export const SegmentedControlPages = findProp(
-    "SegmentedControlPages"
+    "SegmentedControlPages",
 ) as t.SegmentedControlPages;
 export const useSegmentedControlState = findSingular(
-    "useSegmentedControlState"
+    "useSegmentedControlState",
 ) as (arg: t.SegmentedControlStateArgs) => t.SegmentedControlState;
 export const CompatSegmentedControl = findProp(
-    "CompatSegmentedControl"
+    "CompatSegmentedControl",
 ) as t.CompatSegmentedControl;
 
 export const FloatingActionButton = findProp(
-    "FloatingActionButton"
+    "FloatingActionButton",
 ) as t.FloatingActionButton;
 export const ActionSheet = findByProps("ActionSheet").ActionSheet;
 export const BottomSheetTitleHeader = findProp("BottomSheetTitleHeader");
 
 const textsModule = findByPropsLazy("Text", "LegacyText");
 export const Text = proxyLazy(() =>
-    getRenderable(textsModule, "Text")
+    getRenderable(textsModule, "Text"),
 ) as t.Text;
 
 export const AvatarPile = findSingular("AvatarPile");

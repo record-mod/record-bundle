@@ -6,20 +6,20 @@ import {
     TableSwitchRow,
     Button,
 } from "@metro/common/components";
-import { React } from "@metro/common";
 import { ScrollView } from "react-native";
 import ErrorBoundary from "@lib/ui/reporter/components/ErrorBoundary";
+import { useState } from "react";
 
 const util = findByPropsLazy("inspect");
 
 const { TextArea } = findByPropsLazy("Stack", "Button");
 
 export default function EvaluateJavaScriptScreen() {
-    const [code, setCode] = React.useState("");
-    const [awaitResult, setAwaitResult] = React.useState(true);
-    const [isLoading, setIsLoading] = React.useState(false);
-    const [showHidden, setShowHidden] = React.useState(true);
-    const [result, setResult] = React.useState("undefined");
+    const [code, setCode] = useState("");
+    const [awaitResult, setAwaitResult] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+    const [showHidden, setShowHidden] = useState(true);
+    const [result, setResult] = useState("undefined");
 
     return (
         <ErrorBoundary>
@@ -50,7 +50,7 @@ export default function EvaluateJavaScriptScreen() {
                             try {
                                 setIsLoading(true);
                                 const res = (0, eval)(
-                                    `${code}//# sourceURL=ReCordEval`
+                                    `${code}//# sourceURL=ReCordEval`,
                                 );
 
                                 const inspected = util.inspect(
@@ -58,7 +58,7 @@ export default function EvaluateJavaScriptScreen() {
                                     {
                                         depth: 3,
                                         showHidden,
-                                    }
+                                    },
                                 );
 
                                 setResult(inspected);

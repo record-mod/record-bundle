@@ -1,21 +1,21 @@
-import { React, ReactNative } from "@metro/common";
+import { useState, useMemo } from "react";
 import { instances } from "@plugins";
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import PluginCard from "./PluginCard";
 import Search from "@/lib/ui/components/Search";
 import { Stack } from "@/metro/common/components";
 
 export default function PluginsPage() {
     const allPlugins = Array.from(instances);
-    const [query, setQuery] = React.useState("");
+    const [query, setQuery] = useState("");
 
-    const plugins = React.useMemo(() => {
+    const plugins = useMemo(() => {
         const filtered = query
             ? allPlugins.filter(
                   ([id, instance]) =>
                       // Check plugin ID for full match and name for partial match.
                       id.toLowerCase() == query ||
-                      instance.manifest.name.toLowerCase().includes(query)
+                      instance.manifest.name.toLowerCase().includes(query),
               )
             : allPlugins;
 
@@ -30,7 +30,7 @@ export default function PluginsPage() {
                     placeholder={"Search plugins"}
                     isRound={true}
                 />
-                <ReactNative.FlatList
+                <FlatList
                     data={plugins}
                     renderItem={({ item: [id, _] }) => <PluginCard id={id} />}
                 />

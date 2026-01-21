@@ -1,9 +1,8 @@
 import { iterateAssets } from "@lib/api/assets";
 import Search from "@lib/ui/components/Search";
 import ErrorBoundary from "@lib/ui/reporter/components/ErrorBoundary";
-import { React } from "@metro/common";
 import { TableRowGroup } from "@metro/common/components";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { FlatList, View } from "react-native";
 import AssetItem from "../components/AssetItem";
 import { AssetFiltersMenu } from "../components/AssetFilters";
@@ -11,8 +10,8 @@ import { AssetFiltersMenu } from "../components/AssetFilters";
 const displayable = new Set(["png", "jpg", "svg"]);
 
 export default function AssetBrowser() {
-    const [filter, setFilter] = React.useState("all");
-    const [search, setSearch] = React.useState("");
+    const [filter, setFilter] = useState("all");
+    const [search, setSearch] = useState("");
     const all = useMemo(() => Array.from(iterateAssets()), []);
 
     return (
@@ -53,12 +52,12 @@ export default function AssetBrowser() {
                                 .filter(
                                     (a) =>
                                         a.name.toLowerCase().includes(search) ||
-                                        a.id.toString() == search
+                                        a.id.toString() == search,
                                 )
                                 .filter((a) =>
                                     filter == "displayable"
                                         ? displayable.has(a.type)
-                                        : a
+                                        : a,
                                 )}
                             renderItem={({ item }) => (
                                 <AssetItem asset={item} />

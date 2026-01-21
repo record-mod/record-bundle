@@ -4,7 +4,7 @@ import {
     loaderConfig,
 } from "@/lib/api/native/modules/loader";
 import ErrorBoundary from "@/lib/ui/reporter/components/ErrorBoundary";
-import { React, toasts } from "@/metro/common";
+import { toasts } from "@/metro/common";
 import {
     Stack,
     TableRow,
@@ -12,19 +12,20 @@ import {
     TableSwitchRow,
     TextInput,
 } from "@/metro/common/components";
+import { useState } from "react";
 import { ScrollView } from "react-native";
 
 export function LoaderConfig() {
     const DEFAULT_BUNDLE_URL = "http://192.168.0.227:4040/record.js";
     const bridgeLoaderConfig = loaderConfig.currentConfig;
 
-    const [config, setConfig] = React.useState<
+    const [config, setConfig] = useState<
         LoaderConfigType & { currentUrl: string }
     >({
         ...bridgeLoaderConfig,
         currentUrl: bridgeLoaderConfig.customBundleUrl ?? DEFAULT_BUNDLE_URL,
     });
-    const [changed, setChanged] = React.useState(false);
+    const [changed, setChanged] = useState(false);
 
     const updateConfig = () => {
         loaderConfig.configure(config);
@@ -91,8 +92,8 @@ export function LoaderConfig() {
                                     ...prev,
                                     isCustomBundle: v,
                                     customBundleUrl: v
-                                        ? prev.customBundleUrl ??
-                                          DEFAULT_BUNDLE_URL
+                                        ? (prev.customBundleUrl ??
+                                          DEFAULT_BUNDLE_URL)
                                         : prev.customBundleUrl,
                                 }));
                                 setChanged(true);

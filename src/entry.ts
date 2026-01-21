@@ -16,7 +16,7 @@ async function initializeReCord() {
 
         console.log(stack ?? e?.toString?.() ?? e);
         alert(
-            ["Failed to load ReCord!\n", stack || e?.toString?.()].join("\n")
+            ["Failed to load ReCord!\n", stack || e?.toString?.()].join("\n"),
         );
     }
 }
@@ -41,7 +41,7 @@ if (typeof window.__r === "undefined") {
         method: string,
         condition?: (...args: any[]) => boolean,
         resume?: (queue: DeferredQueue) => void,
-        returnWith?: (queue: DeferredQueue) => any
+        returnWith?: (queue: DeferredQueue) => any,
     ) => {
         const restore = instead(
             method,
@@ -60,7 +60,7 @@ if (typeof window.__r === "undefined") {
 
                 // If the condition is not met, we execute the original method immediately
                 return original.apply(this, args);
-            }
+            },
         );
 
         unpatches.push(restore);
@@ -87,7 +87,7 @@ if (typeof window.__r === "undefined") {
             deferMethodExecution(
                 batchedBridge,
                 "callFunctionReturnFlushedQueue",
-                // If the call is to AppRegistry, we want to defer it because it is not yet registered (Revenge delays it)
+                // If the call is to AppRegistry, we want to defer it because it is not yet registered (ReCord delays it)
                 // Same goes to the non-callable modules, which are not registered yet, so we ensure that only registered ones can get through
                 (...args) =>
                     args[0] === "AppRegistry" ||
@@ -97,7 +97,7 @@ if (typeof window.__r === "undefined") {
                         batchedBridge.__callFunction(...args);
                     }
                 },
-                () => batchedBridge.flushedQueue()
+                () => batchedBridge.flushedQueue(),
             );
         }
 

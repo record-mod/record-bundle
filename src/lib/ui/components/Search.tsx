@@ -1,6 +1,7 @@
 import { findAssetId } from "@lib/api/assets";
 import { TextInput } from "@metro/common/components";
 import ErrorBoundary from "@ui/reporter/components/ErrorBoundary";
+import { useState } from "react";
 import { Image, View, ViewStyle } from "react-native";
 
 export interface SearchProps {
@@ -20,7 +21,7 @@ function SearchIcon() {
 }
 
 export default ({ onChangeText, placeholder, style, isRound }: SearchProps) => {
-    const [query, setQuery] = React.useState("");
+    const [query, setQuery] = useState("");
 
     const onChange = (value: string) => {
         setQuery(value);

@@ -1,7 +1,7 @@
 import { ContextMenu, IconButton } from "@metro/common/components";
-import { React } from "@metro/common";
 import { findAssetId } from "@/lib/api/assets";
 import SelectedFilterIcon from "@assets/icons/SelectedFilterIcon.png";
+import { useEffect, useState } from "react";
 
 enum Filters {
     All = "All",
@@ -15,9 +15,9 @@ export function AssetFiltersMenu({
     filter: string;
     onChange: (type: string) => void;
 }) {
-    const [current, setCurrent] = React.useState(filter);
+    const [current, setCurrent] = useState(filter);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setCurrent(filter);
     }, [filter]);
 

@@ -1,9 +1,9 @@
 import { after } from "@lib/api/patcher";
 import { findByNameLazy, findByPropsLazy } from "@metro/wrappers";
-import { React } from "@metro/common";
 import { Emitter } from "@lib/api/emitter";
 import { logger } from "@lib/utils/logger";
 import { entries } from "..";
+import { useEffect, useState } from "react";
 
 const settingConstants = findByPropsLazy("SETTING_RENDERER_CONFIG");
 const SettingsOverviewScreen = findByNameLazy("SettingsOverviewScreen", false);
@@ -12,7 +12,7 @@ export const Events = new Emitter();
 
 function useIsFirstRender() {
     let firstRender = false;
-    React.useEffect(() => void (firstRender = true), []);
+    useEffect(() => void (firstRender = true), []);
     return firstRender;
 }
 
@@ -41,9 +41,9 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
 
     unpatches.push(
         after("default", SettingsOverviewScreen, (_, res) => {
-            const [, forceUpdate] = React.useState({});
+            const [, forceUpdate] = useState({});
 
-            React.useEffect(() => {
+            useEffect(() => {
                 function handler() {
                     forceUpdate({});
                 }
@@ -55,7 +55,7 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
 
             if (
                 (res.props.node.sections as any[]).some(
-                    (section) => section.label === "ReCord"
+                    (section) => section.label === "ReCord",
                 )
             )
                 return;
@@ -86,6 +86,6 @@ export function patchTabsUI(unpatches: (() => void | boolean)[]) {
             res.props.node.sections.unshift(...sectionsMap.values());
 
             return res;
-        })
+        }),
     );
 }

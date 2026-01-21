@@ -13,22 +13,23 @@ import {
 import ReCord from "@assets/icons/ReCord.png";
 import { ScrollView } from "react-native";
 import { getValue, setValue } from "@lib/api/native/modules/store";
-import { NavigationNative, React } from "@metro/common";
+import { NavigationNative } from "@metro/common";
 import ErrorBoundary from "@lib/ui/reporter/components/ErrorBoundary";
+import { useEffect, useState } from "react";
 
 export default function ReCordSettings() {
     const Constants = NativeClientInfoModule.getConstants();
     const navigation = NavigationNative.useNavigation();
 
-    const [isDevMode, setIsDevMode] = React.useState(false);
+    const [isDevMode, setIsDevMode] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const isDev = getValue("core", "experiments", false);
 
         setIsDevMode(isDev);
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         setValue("core", "experiments", isDevMode);
     }, [isDevMode]);
 
@@ -71,7 +72,7 @@ export default function ReCordSettings() {
                             icon={
                                 <TableRow.Icon
                                     source={findAssetId(
-                                        "CircleInformationIcon"
+                                        "CircleInformationIcon",
                                     )}
                                 />
                             }
