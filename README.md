@@ -1,3 +1,5 @@
+## I am archiving this repo as I am no longer working on ReCord, though it may come back in the future
+
 <p align="center">
     <picture>
         <source media="(prefers-color-scheme: dark)" srcset="./src/assets/icons/ReCordSloganLight.png" width="512">
